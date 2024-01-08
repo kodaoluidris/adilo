@@ -2,7 +2,7 @@
     <div class="my-navbar border p-3">
       <div class="row">
         <div class="col-2"> <img src="@/assets/logo.png" alt="Logo" class="navbar-brand logo mx-4" /></div>
-        <div class="col-8">
+        <div class="col-7">
           <nav class="nav">
             <router-link to="/projects" class="nav-link">Projects</router-link>
             <!-- Add a dropdown menu -->
@@ -30,7 +30,17 @@
             <router-link to="/settings" class="nav-link">Settings</router-link>
           </nav>
         </div>
-        <div class="col-2"></div>
+        <div class="col-3">
+            <nav class="nav">
+            <router-link to="/projects" class="nav-link"><b>Help</b></router-link>
+
+            <img src="@/assets/user.png" alt="" class="user-img border-left">
+            <span class="user-info">
+                Cody Fisher<br>
+                codyfisher@gmail.com
+            </span>
+            </nav>
+        </div>
       </div>
     </div>
   </template>
@@ -65,6 +75,15 @@
   border-top: 3px solid #0DABD8 !important; 
   border-radius:4px;
   color: #313538 !important;
+}
+.user-img {
+    height: 50px;
+    border-left : 1px solid #888;
+    padding: 0px 15px;
+}
+.user-info {
+    color: #888 !important;
+    font-size:12px;
 }
   </style>
   
