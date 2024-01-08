@@ -7,7 +7,7 @@
   },
   "scripts": {
     "serve": "vue-cli-service serve",
-    "start": "react-scripts --openssl-legacy-provider start",
+    "start": "vue-scripts --openssl-legacy-provider start",
     "build": "vue-cli-service build",
     "start:server": "json-server --watch db.json --port 3001",
     "lint": "vue-cli-service lint"
