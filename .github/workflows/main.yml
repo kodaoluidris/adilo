@@ -1,0 +1,25 @@
+name: deploy to netlify
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: macos-latest
+    steps: 
+      - name: Get Code
+        uses: actions/checkout@v3
+      - name: Install dependencies
+        run: npm install
+      - name: build Project
+        run: npm run build
+  deploy:
+    runs-on: macos-latest
+    needs: build
+    steps:
+      - name: Deploy to Netlify
+        uses: netlify/actions/cli@v1
+        with:
+          command: 'deploy'
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      - name: Run Success
+        run: echo "successfully deploy to netlify"
