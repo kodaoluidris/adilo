@@ -14,12 +14,29 @@ jobs:
     runs-on: macos-latest
     needs: build
     steps:
-      - name: Deploy to Netlify
-        uses: netlify/actions/cli@v1
-        with:
-          command: 'deploy'
+      - name: Install Heroku CLI
+        run: curl https://cli-assets.heroku.com/install.sh | sh
+
+      - name: Log in to Heroku
+        run: heroku login -i
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+      - name: Start JSON Server
+        run: npm run json-server
+      - name: Wait for JSON Server to start
+        run: sleep 5
+      - name: Deploy to Heroku
+        run: |
+          git init
+          git add .
+          git commit -m "Deploy to Heroku"
+          heroku git:remote -a adilo
+          git push heroku HEAD:main -f
         env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
       - name: Run Success
         run: echo "successfully deploy to netlify"

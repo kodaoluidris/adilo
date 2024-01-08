@@ -1,6 +1,6 @@
 <template>
     <div class="bg-light p-4" style="height: 100vh;">
-      <router-link to="/" class="d-block mb-3 sidebar-link" :class="{ 'active': $route.path === '/my-recording' }">
+      <router-link to="/" class="d-block mb-3 sidebar-link" :class="{ 'active': $route.path === '/' }">
         <div class="row">
             <div class="col-1"> <i class="fas fa-film mr-2"></i> </div>
             <div class="col-10">  My Recording</div>

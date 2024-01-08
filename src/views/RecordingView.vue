@@ -70,14 +70,15 @@ export default{
 
             const stopRecording = () => {
                     var path= "";
+                    var videoUrl  = ""
                     if (mediaRecorder.value && recording.value) {
                         mediaRecorder.value.onstop = () => {
                             const blob = new Blob(recordedChunks.value, { type: 'video/webm' });
                             recordingSize.value = blob.size;
                             recordedChunks.value = [];
-                            const videoUrl = URL.createObjectURL(blob);
-
-                            videoElement.value.src = videoUrl;
+                            videoUrl = URL.createObjectURL(blob);
+                            // console.log(videoUrl);
+                                videoElement.value.src = videoUrl;
                                 const downloadLink = document.createElement('a');
                                 downloadLink.href = videoUrl;
                                 path =  selectedLocation.value+'/recorded-video.webm';
