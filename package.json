@@ -7,8 +7,8 @@
     "npm": "6.x"
   },
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "start": "vue-cli-service serve",
+    "serve": "vue-cli-service serve  --host 0.0.0.0",
+    "start": "vue-cli-service serve  --host 0.0.0.0",
     "build": "vue-cli-service build",
     "start:server": "json-server --watch db.json --port 3001",
     "lint": "vue-cli-service lint"
