@@ -89,10 +89,10 @@ export default{
         <breadcrumbs />
         <div class="content ">
             <div class="row my-4">
-                <div class="col-3">
+                <div class="col-md-3 col-12">
                     <h1 class="top-text">Recordings <strong>{{ videos.length }}</strong></h1>
                 </div>
-                <div class="col-9 p-0">
+                <div class="col-md-9  col-12 p-0">
                     <div class="buttons">
                         <button class="btn btn-default btn-rounded">
                             <i class="fas fa-sort"></i>
@@ -152,7 +152,7 @@ export default{
                     </div>
                 </div>
                 <div class="col-12 my-3" v-else>
-                    <div class="records">
+                    <div class="records table-responsive">
                         <table class="table table-borderless">
                             <thead>
                                 <tr>
@@ -295,6 +295,14 @@ export default{
     font-size: 24px;
     color: #888;
     font-weight: 300;
+}
+@media (max-width: 768px){
+    .top-text{
+        font-size: 16px;
+        color: #888;
+        font-weight: 300;   
+    }
+    
 }
 .btn-rounded {
     border-radius: 28px !important;
