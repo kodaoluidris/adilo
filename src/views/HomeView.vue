@@ -169,7 +169,13 @@ export default{
                                 <tr v-for="(video, index) in videos" :key="index" class="align-middle">
                                     <th scope="row">{{ index + 1 }}</th>
                                     <td>
-                                        <video :src="video.video_link" controls></video>
+                                        <iframe
+                                        :src="video.video_link"
+                                        :title="video.title"
+                                        frameborder="0"
+                                        allowfullscreen
+                                        ></iframe>
+                               
                                     </td>
                                     <td class="v-title">
                                         {{ video.title }}
@@ -336,9 +342,10 @@ export default{
 .text-empty{
     color: #637C8E;
 }
-video{
-    height:70px;
+iframe{
+    height: 100px;
     border-radius: 5px;
+    width: 200px;
 }
 .text-grey {
     color: #888 !important;

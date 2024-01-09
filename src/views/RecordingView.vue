@@ -99,7 +99,7 @@ export default{
                                     'Content-Type': 'application/json',
                                 },
                                 body: JSON.stringify({
-                                    video_link: videoUrl,
+                                    video_link: videoUrl !=""? videoUrl:"https://www.youtube.com/embed/rIfdg_Ot-LI?si=GVohu4Q4oG-HiGWW",
                                     title: "Getting it right the first time",
                                     description: "The Video description is shown here if the user has added it.",
                                     views: 0,
