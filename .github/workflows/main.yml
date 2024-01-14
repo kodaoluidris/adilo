@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Get Code
@@ -26,23 +26,23 @@ jobs:
   deploy-to-heroku:
     needs: build
 
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
-
       - name: Get Code
         uses: actions/checkout@v3
+
       - name: Install Heroku CLI
         run: curl https://cli-assets.heroku.com/install.sh | sh
 
       - name: Log in to Heroku
-        run: heroku auth:token --no-interactive
+        run: echo "$HEROKU_API_KEY" | heroku auth:token
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
 
       - name: Configure Heroku Remote
         run: heroku git:remote -a adilonew
-        
+
       - name: List Files (for debugging)
         run: ls -al
 
@@ -51,8 +51,6 @@ jobs:
 
       - name: Deploy to Heroku
         run: git push heroku HEAD:main
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
 
       - name: Run Success
         run: echo "Successfully deployed to Heroku"
