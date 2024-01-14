@@ -33,7 +33,7 @@ jobs:
         run: curl https://cli-assets.heroku.com/install.sh | sh
 
       - name: Log in to Heroku
-        run: heroku login --api-key=$HEROKU_API_KEY
+        run: heroku auth:token --no-interactive
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
 
