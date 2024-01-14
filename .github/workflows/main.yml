@@ -41,7 +41,7 @@ jobs:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
 
       - name: Configure Heroku Remote
-        run: git remote add heroku https://${{ secrets.HEROKU_API_KEY }}@git.heroku.com/adilonew.git
+        run: git remote add heroku https://1a6b3e3a-5c3d-48cc-85f0-6391054368b0@git.heroku.com/adilonew.git
   
 
       - name: List Files (for debugging)
