@@ -29,7 +29,7 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      
+
       - name: Get Code
         uses: actions/checkout@v3
       - name: Install Heroku CLI
@@ -42,6 +42,12 @@ jobs:
 
       - name: Configure Heroku Remote
         run: heroku git:remote -a adilonew
+        
+      - name: List Files (for debugging)
+        run: ls -al
+
+      - name: Show Git Remote
+        run: git remote -v
 
       - name: Deploy to Heroku
         run: git push heroku HEAD:main
