@@ -1,42 +1,49 @@
-name: deploy to netlify
-on: workflow_dispatch
+name: deploy to Heroku
+
+on:
+  push:
+    branches: main
+
 jobs:
   build:
     runs-on: macos-latest
-    steps: 
+
+    steps:
       - name: Get Code
         uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+
       - name: Install dependencies
         run: npm install
-      - name: build Project
+
+      - name: Build Project
         run: npm run build
-  deploy:
-    runs-on: macos-latest
+
+  deploy-to-heroku:
     needs: build
+
+    runs-on: macos-latest
+
     steps:
       - name: Install Heroku CLI
         run: curl https://cli-assets.heroku.com/install.sh | sh
 
       - name: Log in to Heroku
-        run: heroku login -i
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build
-        run: npm run build
-      - name: Start JSON Server
-        run: npm run json-server
-      - name: Wait for JSON Server to start
-        run: sleep 5
-      - name: Deploy to Heroku
-        run: |
-          git init
-          git add .
-          git commit -m "Deploy to Heroku"
-          heroku git:remote -a adilo
-          git push heroku HEAD:main -f
+        run: heroku login --api-key=$HEROKU_API_KEY
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+
+      - name: Configure Heroku Remote
+        run: heroku git:remote -a adilonew
+
+      - name: Deploy to Heroku
+        run: git push heroku HEAD:main
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+
       - name: Run Success
-        run: echo "successfully deploy to netlify"
+        run: echo "Successfully deployed to Heroku"
