@@ -34,9 +34,12 @@ jobs:
           heroku_email: "kodaoluidris@gmail.com"
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+          useforce: true,
+          dynamicFiles: true,
+          procfile: "worker: npm start"
 
-      - name: Get Code
-        uses: actions/checkout@v3
+      # - name: Get Code
+      #   uses: actions/checkout@v3
 
       # # - name: Install Heroku CLI
       # #   run: curl https://cli-assets.heroku.com/install.sh | sh
