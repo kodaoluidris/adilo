@@ -32,8 +32,8 @@ jobs:
       - name: Get Code
         uses: actions/checkout@v3
 
-      - name: Install Heroku CLI
-        run: curl https://cli-assets.heroku.com/install.sh | sh
+      # - name: Install Heroku CLI
+      #   run: curl https://cli-assets.heroku.com/install.sh | sh
 
       - name: Deploy to Heroku
         env:
