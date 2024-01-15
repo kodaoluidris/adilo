@@ -35,23 +35,14 @@ jobs:
       - name: Install Heroku CLI
         run: curl https://cli-assets.heroku.com/install.sh | sh
 
-      - name: Log in to Heroku
-        run: echo "$HEROKU_API_KEY" | heroku auth:token
+      - name: Deploy to Heroku
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-
-      - name: Configure Heroku Remote
-        run: git remote add heroku https://1a6b3e3a-5c3d-48cc-85f0-6391054368b0@git.heroku.com/adilonew.git
-  
-
-      - name: List Files (for debugging)
-        run: ls -al
-
-      - name: Show Git Remote
-        run: git remote -v
-
-      - name: Deploy to Heroku
-        run: git push -u heroku HEAD:main
+          HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
+        if: github.ref == 'refs/heads/main' && job.status == 'success'
+        run: |
+          git remote add heroku https://$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git
+          git push -u heroku HEAD:main
 
       - name: Run Success
         run: echo "Successfully deployed to Heroku"
